@@ -109,7 +109,6 @@ class OffensiveReflexAgent(CaptureAgent):
 
         max_value = max(values)
         best_actions = [a for a, v in zip(actions, values) if v == max_value]
-
         return random.choice(best_actions)
 
     def get_successor(self, game_state, action):
@@ -147,8 +146,8 @@ class OffensiveReflexAgent(CaptureAgent):
                 # If defenders are close to this food, penalize it heavily to avoid risky paths
                 if defenders:
                     ghost_dists = [self.get_maze_distance(food, d.get_position()) for d in defenders]
-                    if min(ghost_dists) <= 2:
-                        dist_food += 10
+                    if min(ghost_dists) <= 3:
+                        dist_food += 100
                 adjusted_distances.append(dist_food)
             
             # Choose the safest food target by taking the minimum adjusted distance
