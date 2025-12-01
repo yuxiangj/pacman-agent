@@ -178,7 +178,7 @@ class OffensiveReflexAgent(CaptureAgent):
             'successor_score': 100,
             'food_distance': -2,
             'ghost_distance': 1,
-            'home_distance': -2,
+            'home_distance': -1,
             'stop': -100,
             'reverse': -2
         }
