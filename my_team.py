@@ -279,6 +279,7 @@ class DefensiveReflexAgent(CaptureAgent):
         values = [self.evaluate(game_state, a) for a in actions]
         max_value = max(values)
         best_actions = [a for a, v in zip(actions, values) if v == max_value]
+        enemy_captured = (best_actions == Directions.STOP)
         return random.choice(best_actions)
 
     def get_successor(self, game_state, action):
@@ -324,7 +325,6 @@ class DefensiveReflexAgent(CaptureAgent):
             # Trap the enemy pacman, set the enemy_captured flag as true for OffensiveReflexAgent
             if invader_position is not None:
                 features['stop'] = -100*threshold_limit_search(invader_position, my_position, walls, None, threshold=12)
-                enemy_captured = (features['stop'] == -100)
         reverse_direction = Directions.REVERSE[game_state.get_agent_state(self.index).configuration.direction]
         if action == reverse_direction:
             features['reverse'] = 1
