@@ -325,6 +325,7 @@ class DefensiveReflexAgent(CaptureAgent):
             # Trap the enemy pacman, set the enemy_captured flag as true for OffensiveReflexAgent
             if invader_position is not None:
                 features['stop'] = -100*threshold_limit_search(invader_position, my_position, walls, None, threshold=12)
+              
         reverse_direction = Directions.REVERSE[game_state.get_agent_state(self.index).configuration.direction]
         if action == reverse_direction:
             features['reverse'] = 1
